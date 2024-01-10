@@ -42,11 +42,7 @@ namespace Repository
         }
         public ICollection<Room> GetRoomsByPriceRange(decimal minPrice, decimal maxPrice)
         {
-            return _dataContext.Rooms
-                // .Include(room => room.Hotel)
-                .Where(room => room.Price >= minPrice && room.Price <= maxPrice)
-                .OrderBy(room => room.Id)
-                .ToList();
+            return _dataContext.Rooms.Where(room => room.Price >= minPrice && room.Price <= maxPrice).OrderBy(room => room.Id).ToList();
         }
         public bool UpdateRoom(Room room)
         {

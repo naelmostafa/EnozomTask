@@ -53,7 +53,7 @@ namespace Enozom.Controllers
         public IActionResult GetRoomsByPriceRange(decimal minPrice, decimal maxPrice)
         {
             IEnumerable<RoomDto> rooms = _mapper.Map<IEnumerable<RoomDto>>(_roomRepository.GetRoomsByPriceRange(minPrice, maxPrice));
-            return !ModelState.IsValid ? BadRequest(ModelState) : rooms.Any() ? NotFound() : Ok(rooms);
+            return !ModelState.IsValid ? BadRequest(ModelState) : Ok(rooms);
         }
 
         [HttpGet("GetRoomsByPrice/{price}")]
@@ -63,7 +63,7 @@ namespace Enozom.Controllers
             IEnumerable<RoomDto> rooms = _mapper.Map<IEnumerable<RoomDto>>(_roomRepository.GetRoomsByPrice(price));
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok(rooms);
         }
-        
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(RoomDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
